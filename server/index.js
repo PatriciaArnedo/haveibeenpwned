@@ -1,8 +1,8 @@
 const express = require('express')
 const fetch = require('node-fetch')
+var cors = require('cors')
 
 
-const app = express()
 const apiKey = process.env.HAVE_I_BEEN_PAWNED_API_KEY
 const port = process.env.PORT || '8080'
 
@@ -12,19 +12,24 @@ function validateEmail(email) {
     return re.test(String(email).toLowerCase());
 }
 
-async function getBreachesByEmail(emailAddress, includeUnverified) {
-    const url = `https://haveibeenpwned.com/api/v3/breachedaccount/${encodeURIComponent(emailAddress)}?includeUnverified=${includeUnverified}&truncateResponse=false`
-    const resp = await fetch(url, {
-        headers: {
-            "User-Agent": "JupiterOne Have I Beeen Pwned App",
-            "hibp-api-key": apiKey,
-        }
-    })
+async function getBreachesByEmail(emailAddress) {
+    const url = `https://haveibeenpwned.com/api/v3/breachedaccount/${encodeURIComponent(emailAddress)}?truncateResponse=false`
+    const headers = {
+        "User-Agent": "JupiterOne Have I Beeen Pwned App",
+        "hibp-api-key": apiKey,
+    }
+    const resp = await fetch(url, {headers})
+    if (resp.status === 404) {
+        return []
+    }
     if (resp.status !== 200) {
         throw Error(`non-200 response code ${resp.status}`)
     }
     return resp.json()
 }
+
+const app = express()
+app.use(cors())
 
 app.get('/breaches', async (req, res) => {
     const emailAddress = req.query.email
@@ -34,8 +39,7 @@ app.get('/breaches', async (req, res) => {
         })
     }
 
-    const includeUnverified = req.query.includeUnverified || false
-    getBreachesByEmail(emailAddress, includeUnverified)
+    getBreachesByEmail(emailAddress)
         .then(breaches => {
             return res.json({
                 data: breaches
@@ -44,7 +48,7 @@ app.get('/breaches', async (req, res) => {
         .catch(e => {
             console.error("error while querying haveibeenpwned", e)
             return res.status(500).json({
-                "friendly_error": "An unknown error occurred while fetching data. Please try again."
+                "friendly_error": "An error occurred while fetching data. Please try again."
             })
         })
 })
