@@ -4,7 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import { borders } from '@material-ui/system';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,7 +29,6 @@ const EmailForm = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        //TODO Validate email adddress here maybe?
         props.onSubmit(email)
     }
 
@@ -54,7 +52,6 @@ const EmailForm = (props) => {
                                 type="submit"
                                 variant="contained"
                                 color="primary"
-                                size="normal"
                             >
                                 Submit
                             </Button>

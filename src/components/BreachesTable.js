@@ -57,7 +57,7 @@ function BreachesTable(props) {
     }
   }
 
-  const pwndText = breaches.length === 0 ? 'Congratulations, you have not been pwnd!' : "Sorry, you've been pwnd!"
+  const pwndText = breaches.length === 0 ? "Congratulations, you haven't been pwnd!" : "Sorry, you've been pwnd!"
 
   const rows = breaches.filter(row => rowMatchesFilter(searchFilter, row)).map(prepareRow).sort(compareForSort)
 
