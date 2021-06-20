@@ -9,14 +9,17 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
-    menuButton: {
-        marginRight: theme.spacing(2),
+    title: {
+        color: '#000000',
+        fontSize: 26.5,
     },
     appBar: {
         background: '#FFFFFF',
+        marginBottom: 30,
     },
     logo: {
         height: 30.42,
+        marginRight: 10,
     },
     toolbar: {
         height: 100,
@@ -31,7 +34,7 @@ const Header = () => {
             <Toolbar className={classes.toolbar} >
                 <img className={classes.logo} src="https://i.imgur.com/JX2ISDI.png" alt="JupiterOne Company Logo" />
                 <Typography variant="h6" className={classes.title}>
-
+                    X haveibeenpwned?
                 </Typography>
             </Toolbar>
         </AppBar>
