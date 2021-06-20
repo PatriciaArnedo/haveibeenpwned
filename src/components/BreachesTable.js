@@ -10,11 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Icon from '@material-ui/core/Icon';
-
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-
 
 const useStyles = makeStyles({
   table: {
@@ -64,12 +59,7 @@ function BreachesTable(props) {
 
   const pwndText = breaches.length === 0 ? 'Congratulations, you have not been pwnd!' : "Sorry, you've been pwnd!"
 
-  const rows = breaches.filter(row => rowMatchesFilter(searchFilter, row)).sort(compareForSort).map(x => {
-    x = {...x}
-    x['UsernamePwnd'] = x['DataClasses'].includes('Usernames')
-    x['PasswordPwnd'] = x['DataClasses'].includes('Passwords')
-    return x
-  })
+  const rows = breaches.filter(row => rowMatchesFilter(searchFilter, row)).map(prepareRow).sort(compareForSort)
 
   return (
     <Grid container direction={'column'} spacing={1}>
@@ -104,8 +94,8 @@ function BreachesTable(props) {
                     <TableHeaderCell updateSortState={updateSortState} sortState={sortState} name={'PwnCount'} displayName='Pwn Count' align='right' />
                     <TableHeaderCell updateSortState={updateSortState} sortState={sortState} name={'UsernamePwnd'} displayName='Username Pwnd' align='right' />
                     <TableHeaderCell updateSortState={updateSortState} sortState={sortState} name={'PasswordPwnd'} displayName='Password Pwnd' align='right' />
-                    
-                    
+
+
 
                   </TableRow>
                 </TableHead>
@@ -115,10 +105,10 @@ function BreachesTable(props) {
                       <TableCell>{row['Name']}</TableCell>
                       <TableCell align="right">{row['Domain']}</TableCell>
                       <TableCell align="right">{row['BreachDate']}</TableCell>
-                      <TableCell align="right">{`${row['IsVerified']}`}</TableCell>
+                      <TableCell align="right">{row['IsVerified']}</TableCell>
                       <TableCell align="right">{row['PwnCount']}</TableCell>
-                      <TableCell align="right">{`${row['UsernamePwnd']}`}</TableCell>
-                      <TableCell align="right">{`${row['PasswordPwnd']}`}</TableCell>
+                      <TableCell align="right">{row['UsernamePwnd']}</TableCell>
+                      <TableCell align="right">{row['PasswordPwnd']}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -129,6 +119,16 @@ function BreachesTable(props) {
       </Grid>
     </Grid>
   );
+}
+
+function prepareRow(row) {
+  // Shallow copy to avoid modifying the objects in state
+  row = { ...row }
+  // Convert everything to string to simplify sorting
+  row['UsernamePwnd'] = `${row['DataClasses'].includes('Usernames')}`
+  row['PasswordPwnd'] = `${row['DataClasses'].includes('Passwords')}`
+  row['IsVerified'] = `${row['IsVerified']}`
+  return row
 }
 
 const rowMatchesFilter = (filter, row) => {
@@ -149,12 +149,12 @@ function TableHeaderCell(props) {
 
   const sortState = props.sortState
   const updateSortState = props.updateSortState
-  
+
   let displayName = props.displayName
 
 
   if (sortState.header === name) {
-    const arrow = sortState.ascending ? '⬆' : '⬇' 
+    const arrow = sortState.ascending ? '⬆' : '⬇'
     displayName += ' ' + arrow
   }
 
