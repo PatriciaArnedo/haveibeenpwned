@@ -13,7 +13,13 @@ const useStyles = makeStyles((theme) => ({
 
     },
     paper: {
-        padding: 50
+        paddingLeft: 80,
+        paddingRight: 80,
+        paddingBottom: 50,
+        paddingTop: 50,
+    },
+    textField: {
+        width: '35ch'
     }
 }))
 
@@ -36,7 +42,7 @@ const EmailForm = (props) => {
         <Grid className={classes.root} container justify={'center'}>
             <Paper className={classes.paper}>
                 <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-                    <Grid container alignItems='center' direction={'column'} spacing={1}>
+                    <Grid container alignItems='center' direction={'row'} spacing={1}>
                         <Grid item>
                             <TextField
                                 size='small'
@@ -45,6 +51,7 @@ const EmailForm = (props) => {
                                 value={email}
                                 onChange={handleChange}
                                 variant="outlined"
+                                className={classes.textField}
                             />
                         </Grid>
                         <Grid item>
