@@ -16,10 +16,6 @@ const useStyles = makeStyles((theme) => ({
     background: "#FFFFFF",
     marginBottom: 30,
   },
-  logo: {
-    height: 30.42,
-    marginRight: 10,
-  },
   toolbar: {
     height: 100,
   },

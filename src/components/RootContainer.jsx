@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import EmailForm from "./EmailForm";
 import ErrorDisplay from "./ErrorDisplay";
 import Header from "./Header";
-import BreachesTable from "./BreachesTable";
+import BreachesTable from "./BreachesTable/BreachesTable";
 
 function RootContainer() {
   const [errorMsg, setErrorMsg] = useState("");
