@@ -1,5 +1,7 @@
 <h1>Have I Been Pwned Interface</h1>
 
+<img width="1358" alt="Screen Shot 2023-02-27 at 4 24 04 PM" src="https://user-images.githubusercontent.com/13356497/221700431-064e3b18-0e95-45ce-b0f7-e9a0066bb77e.png">
+
 <h2>Overview</h2>
 Welcome to Have I Been Pwned! This service allows users to look up emails using the haveibeenpwned? api and see if they have been compromised in previous breaches.
 
