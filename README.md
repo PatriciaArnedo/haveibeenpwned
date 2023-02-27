@@ -1,7 +1,7 @@
-<h1>HaveIBeenPwned Interface</h1>
+<h1>Have I Been Pwned Interface</h1>
 
 <h2>Overview</h2>
-Welcome to HaveIBeenPwned! This service allows users to look up emails using the haveibeenpwned? api and see if they have been compromised in previous breaches.
+Welcome to Have I Been Pwned! This service allows users to look up emails using the haveibeenpwned? api and see if they have been compromised in previous breaches.
 
 Enter an email in the email field and submit to see if you have been pwned and the details of the breaches if any.
 

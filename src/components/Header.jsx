@@ -27,7 +27,7 @@ const Header = () => {
     <AppBar elevation={0} position="sticky" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
         <Typography variant="h6" className={classes.title}>
-          haveibeenpwned?
+          Have I been pwned?
         </Typography>
       </Toolbar>
     </AppBar>
