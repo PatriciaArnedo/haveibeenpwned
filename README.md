@@ -9,6 +9,7 @@ Enter an email in the email field and submit to see if you have been pwned and t
 
 1. A user can submit their email and see all associated breaches for that email
 2. A user can see if their username and password were compromised, as well as the domain and the date of the breach.
+3. A user can sort their breaches by various atributes.
 
 How to run the server:
 

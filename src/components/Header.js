@@ -30,7 +30,6 @@ const Header = () => {
   return (
     <AppBar elevation={0} position="sticky" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
-        <img className={classes.logo} src="" alt="Logo" />
         <Typography variant="h6" className={classes.title}>
           haveibeenpwned?
         </Typography>
