@@ -2,7 +2,7 @@ const express = require("express");
 const fetch = require("node-fetch");
 var cors = require("cors");
 
-const apiKey = process.env.HAVE_I_BEEN_PAWNED_API_KEY;
+const apiKey = process.env.HAVE_I_BEEN_PWNED_API_KEY;
 const port = process.env.PORT || "8080";
 
 // Source: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript

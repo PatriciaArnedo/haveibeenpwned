@@ -15,7 +15,7 @@ How to run the server:
 ```
 cd server
 npm install
-HAVE_I_BEEN_PAWNED_API_KEY=xxxxxx node index.js
+HAVE_I_BEEN_PWNED_API_KEY=xxxxxx node index.js
 ```
 
 Optionally, the server port can also be changed by setting the PORT environment variable
